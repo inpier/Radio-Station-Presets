@@ -13,13 +13,13 @@
  */
 metadata {
 	definition (name: "Radio Stations", namespace: "smartthings/testing", author: "SmartThings/Inpier") {
-		capability "Actuator"
-		capability "Button"
-		//capability "Holdable Button"
-		capability "Configuration"
-		capability "Sensor"
-        capability "Music Player"
-        capability "Switch"
+	capability "Actuator"
+	capability "Button"
+	//capability "Holdable Button"
+	capability "Configuration"
+	capability "Sensor"
+        //capability "Music Player"
+        //capability "Switch"
         
         attribute "buttonNumber","String"
         attribute "volumeUp", "String"
@@ -96,22 +96,7 @@ metadata {
 		details(["push1","push2","button","push3","push4","stop","push5","push6","volup","push7","push8","voldown"])
 	}
 }
-/* Still to do 
-preferences {
-    	 section {
-           input title: "Personalise Buttons", description: "If you wish you can add the Station name in the fields below or leave as default.", displayDuringSetup: false//, type: "paragraph", element: "paragraph"
-           input name: "station11", type: "text", title: "Enter Name for Station 1", description: "1", defaultValue: "Station 1", displayDuringSetup: false
-           input name: "push2", type: "text", title: "Enter Name for Station 2", description: "2", defaultValue: "Station 2", displayDuringSetup: false
-		   input name: "push3", type: "text", title: "Enter Name for Station 3", description: "3", defaultValue: "Station 3", displayDuringSetup: false
-           input name: "push4", type: "text", title: "Enter Name for Station 4", description: "4", defaultValue: "Station 4", displayDuringSetup: false
-           input name: "push5", type: "text", title: "Enter Name for Station 5", description: "5", defaultValue: "Station 5", displayDuringSetup: false
-           input name: "push6", type: "text", title: "Enter Name for Station 6", description: "6", defaultValue: "Station 6", displayDuringSetup: false
-           input name: "push7", type: "text", title: "Enter Name for Station 7", description: "7", defaultValue: "Station 7", displayDuringSetup: false
-		   input name: "push8", type: "text", title: "Enter Name for Station 8", description: "8", defaultValue: "Station 8", displayDuringSetup: false
-          
-              }
-        }
-*/        
+
 def parse(String description) {
 
 }

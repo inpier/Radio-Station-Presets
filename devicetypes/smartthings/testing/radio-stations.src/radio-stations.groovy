@@ -60,7 +60,7 @@ metadata {
 		status "wakeup":  "command: 8407, payload: "
 	}
 	tiles {
-		standardTile("button", "device.button0" , width: 1, height: 1, decoration: "flat") {
+		standardTile("button", "device.button0" , width: 2, height: 2, decoration: "flat") {
 			state "off", label: "webCoRE Radio Station Presets", action: "mute", icon: "st.Electronics.electronics10", backgroundColor: "#ffffff"
             state "on", label: "Muted", action: "unmute", icon: "st.Electronics.electronics10", backgroundColor: "#d1e0e0"
 		}
@@ -75,8 +75,8 @@ metadata {
  		standardTile("push3", "device.button3", width: 1, height: 1, decoration: "flat") {
 			state "off", label: "Station 3", backgroundColor: "#ffffff", action: "push3", icon: "st.Electronics.electronics16"
             state "on", label: "Station 3", backgroundColor: "#ff9933", action: "push3", icon: "st.alarm.beep.beep"
-		}
- 		standardTile("push4", "device.button4", width: 1, height: 1, decoration: "flat") {
+		}            
+        standardTile("push4", "device.button4", width: 1, height: 1, decoration: "flat") {
 			state "off", label: "Station 4", backgroundColor: "#ffffff", action: "push4", icon: "st.Electronics.electronics16"
             state "on", label: "Station 4", backgroundColor: "#ff9933", action: "push4", icon: "st.alarm.beep.beep"
 		}
@@ -95,8 +95,8 @@ metadata {
 			state "default", label: "Vol -", backgroundColor: "#00b359", action: "voldown", icon: ""
 		}
  		standardTile("push7", "device.button7", width: 1, height: 1, decoration: "flat") {
-			state "off", label: "Station 7", backgroundColor: "#ffffff", action: "push7", icon: "st.Electronics.electronics16"
-            state "on", label: "Station 7", backgroundColor: "#ff9933", action: "push7", icon: "st.alarm.beep.beep"
+			state "off", label:  "Station 7", backgroundColor: "#ffffff", action: "push7", icon: "st.Electronics.electronics16"
+            state "on", label:  "Station 7", backgroundColor: "#ff9933", action: "push7", icon: "st.alarm.beep.beep"
 		}
  		standardTile("push8", "device.button8", width: 1, height: 1, decoration: "flat") {
 			state "off", label: "Station 8", backgroundColor: "#ffffff", action: "push8", icon: "st.Electronics.electronics16"
@@ -110,8 +110,9 @@ metadata {
         
 		main "button"
 		//details(["push1","push2","button","push3","push4","stop","push5","push6","volup","push7","push8","voldown"])
-        details(["button","push1","push2","push3","push4","volup","stop","push5","push6","push7","push8","voldown"])
+        details(["button","volup","stop","push1","push2","voldown","push3","push4","push5","push6","push7","push8"])
 	}
+
 }
 
 def parse(String description) {
@@ -119,56 +120,65 @@ def parse(String description) {
 }
 
 def push1() {
-	stop()
+   // stop()
+    change()
     sendEvent(name: "button1", value: "on")
     push(1)
 }
 
 def push2() {
-	stop()
+   // stop()
+    change()
     sendEvent(name: "button2", value: "on")
     push(2)
 }
 
 def push3() {
-	stop()
-    sendEvent(name: "button3", value: "on")
+	//stop()    
+    change()
+    sendEvent(name: "button3", value: "on")    
     push(3)
 }
 
 def push4() {
-    stop()
+   // stop()
+    change()
     sendEvent(name: "button4", value: "on")
 	push(4)
 }
 
 def push5() {
-    stop()
+   // stop()
+    change()
     sendEvent(name: "button5", value: "on")
 	push(5)
 }
 
 def push6() {
-    stop()
+   // stop()
+    change()
     sendEvent(name: "button6", value: "on")    
 	push(6)
 }
 
 def push7() {
-    stop()
-    sendEvent(name: "button7", value: "on")    
-	push(7)
+   // stop()
+    change() 
+    sendEvent(name: "button7", value: "on" ) 
+    push(7)
 }
 
 def push8() {
-    stop()
+   // stop()
+    change()
     sendEvent(name: "button8", value: "on")    
 	push(8)
 }
 
 def change() {
-
+/*
  delayBetween([
+  sendEvent(name: "button0", value: "off"),
   sendEvent(name: "button1", value: "off"),
   sendEvent(name: "button2", value: "off"),
   sendEvent(name: "button3", value: "off"),
@@ -177,8 +187,18 @@ def change() {
   sendEvent(name: "button6", value: "off"),
   sendEvent(name: "button7", value: "off"),
   sendEvent(name: "button8", value: "off")
-  ], 100)
-
+  ], 200)
+ */ 
+  
+  sendEvent(name: "button0", value: "off")
+  sendEvent(name: "button1", value: "off")
+  sendEvent(name: "button2", value: "off")
+  sendEvent(name: "button3", value: "off")
+  sendEvent(name: "button4", value: "off")
+  sendEvent(name: "button5", value: "off")
+  sendEvent(name: "button6", value: "off")
+  sendEvent(name: "button7", value: "off")
+  sendEvent(name: "button8", value: "off")
 }
 
 def stop() {
@@ -187,11 +207,13 @@ def stop() {
 }
 
 def volup() {
-	push(10)
+	sendEvent(name: "button0", value: "off")
+    push(10)
 }
 
 def voldown() {
-	push(11)
+	sendEvent(name: "button0", value: "off")
+    push(11)
 }
 
 def mute() {
